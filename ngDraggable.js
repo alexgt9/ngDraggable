@@ -227,15 +227,19 @@ angular.module("ngDraggable", [])
                     var updateDragStyles = function(touching, dragElement) {
                         if(touching){
                             element.addClass('drag-enter');
+                            (typeof element[0].addClass == 'function') && element[0].addClass('drag-enter');
                             dragElement.addClass('drag-over');
+                            (typeof dragElement[0].addClass == 'function') && dragElement[0].addClass('drag-over');
                         }else{
                             element.removeClass('drag-enter');
+                            (typeof element[0].removeClass == 'function') && element[0].removeClass('drag-enter');
                             dragElement.removeClass('drag-over');
+                            (typeof dragElement[0].removeClass == 'function') && dragElement[0].removeClass('drag-over');
                         }
                     }
                     var hitTest = function(x, y) {
                         var bounds = element.offset();
-                        bounds.right = bounds.left + element.outerWidth();
+                        bounds.right = bounds.left + element[0].getBoundingClientRect().width;
                         bounds.bottom = bounds.top + element.outerHeight();
                         return x >= bounds.left
                                 && x <= bounds.right

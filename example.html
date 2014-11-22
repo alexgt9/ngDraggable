@@ -55,6 +55,9 @@
     }
     [ng-drop].drag-enter{
         border:solid 5px red;
+        stroke-width: 1;
+        stroke: red;
+        fill: red;
     }
     [ng-drop] span.title{
         display: block;
@@ -105,7 +108,13 @@
           </div>
 
       </div>
+<h2>Svg</h2>
 
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="350" height="80"> 
+        <text ng-drop="true" ng-drop-success="onDropComplete4($data,$event)" x="10" y="40">{{ svgText }}</text> 
+        <rect ng-class="{{rectClass}}" ng-drop="true" ng-drop-success="onDropComplete3($data,$event)" id="rect1" x="160" y="10" width="100" height="60" fill="green"/> 
+        <text x="170" y="35">{{ rectText }}</text> 
+      </svg>
     <hr>
 
 
@@ -116,6 +125,7 @@
   <script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
   <script src="ngDraggable.js"></script>
+  <script src="ngSvgDraggable.js"></script>
   <script>
     angular.module('ExampleApp', ['ngDraggable']).
       controller('MainCtrl', function ($scope) {
@@ -124,6 +134,8 @@
         $scope.draggableObjects = [{name:'one'}, {name:'two'}, {name:'three'}];
         $scope.droppedObjects1 = [];
         $scope.droppedObjects2= [];
+        $scope.rectText = "Drop here";
+        $scope.svgText = "Drop here";
         $scope.onDropComplete1=function(data,evt){
             var index = $scope.droppedObjects1.indexOf(data);
             if (index == -1)
@@ -147,6 +159,12 @@
             if (index == -1) {
                 $scope.droppedObjects2.push(data);
             }
+        }
+        $scope.onDropComplete3=function(data,evt){
+          $scope.rectText = data.name;
+        }
+        $scope.onDropComplete4=function(data,evt){
+          $scope.svgText = data.name;
         }
         var inArray = function(array, obj) {
             var index = array.indexOf(obj);
