@@ -51,6 +51,14 @@ app.controller('MainCtrl', function ($scope) {
  };
 ```
 
+### Svg support
+
+Just include the file ngSvgDraggable.js to add SVG support
+
+```html
+<script src="ngSvgDraggable.js"></script>
+```
+
 ## Examples
 [`Drag and drop`](http://htmlpreview.github.io/?https://github.com/fatlinesofcode/ngDraggable/blob/master/example.html).
 
